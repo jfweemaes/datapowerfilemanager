@@ -18,7 +18,7 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }        
 
         #region Windows Form Designer generated code
 
@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.MaskedTextBox();
+            this.txtDataPowerIP = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,26 +44,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtUsername
             // 
-            this.textBox1.Location = new System.Drawing.Point(146, 120);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 20);
-            this.textBox1.TabIndex = 0;
+            this.txtUsername.Location = new System.Drawing.Point(146, 120);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(232, 20);
+            this.txtUsername.TabIndex = 0;
             // 
-            // maskedTextBox1
+            // txtPassword
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(146, 147);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(232, 20);
-            this.maskedTextBox1.TabIndex = 1;
+            this.txtPassword.Location = new System.Drawing.Point(146, 147);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(232, 20);
+            this.txtPassword.TabIndex = 1;
             // 
-            // maskedTextBox2
+            // txtDataPowerIP
             // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(146, 174);
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(232, 20);
-            this.maskedTextBox2.TabIndex = 2;
+            this.txtDataPowerIP.Location = new System.Drawing.Point(146, 174);
+            this.txtDataPowerIP.Name = "txtDataPowerIP";
+            this.txtDataPowerIP.Size = new System.Drawing.Size(232, 20);
+            this.txtDataPowerIP.TabIndex = 2;
             // 
             // label1
             // 
@@ -124,6 +124,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(219, 211);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(92, 27);
@@ -139,8 +140,10 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(390, 250);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLogin);
@@ -149,9 +152,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.maskedTextBox2);
-            this.Controls.Add(this.maskedTextBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtDataPowerIP);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtUsername);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmLogin";
             this.Opacity = 0;
@@ -166,9 +169,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.MaskedTextBox txtPassword;
+        private System.Windows.Forms.MaskedTextBox txtDataPowerIP;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

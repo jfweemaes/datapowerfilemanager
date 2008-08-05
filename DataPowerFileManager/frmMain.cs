@@ -85,6 +85,22 @@ namespace DataPowerFileManager
 
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLogin frm = new frmLogin();
+            frm.Visible = true;
+            frm.Close();
+            this.Close();
+            
+        }
+
+        private void returnToToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLogin frm = new frmLogin();
+            frm.Visible = true;            
+            this.Close();
+        }
+
         
 
         
