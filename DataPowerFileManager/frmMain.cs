@@ -30,6 +30,8 @@ namespace DataPowerFileManager
         public string dirPath = "";
         public string dirName = "";
         public TreeNodeMouseClickEventArgs ev;
+
+        int cntdrv = 0;
         
 
 
@@ -57,7 +59,7 @@ namespace DataPowerFileManager
         {
             DriveInfo[] drvlist = DriveInfo.GetDrives();
             int cnt = drvlist.Length;
-            int cntdrv = 0;
+            cntdrv = 0;
             foreach (DriveInfo lst in drvlist)
             {
                 if (lst.DriveType == DriveType.CDRom)
@@ -66,27 +68,47 @@ namespace DataPowerFileManager
                 }
                 else
                 {
-                    DirectoryInfo di = new
-                       DirectoryInfo(lst.ToString());
-                    DirectoryInfo[] di_list =
-                       di.GetDirectories();
-                    foreach (DirectoryInfo lstdir in
-                       di_list)
+                    DirectoryInfo di = new DirectoryInfo(lst.ToString());
+                    DirectoryInfo[] di_list = di.GetDirectories();
+                    foreach (DirectoryInfo lstdir in di_list)
                     {
-                        string n =
-                          lstdir.Name.ToString();
-                        treeView1.Nodes[0].Nodes
-                          [cntdrv].Nodes.Add
-                             (n, n, 3, 3);
+                        string n = lstdir.Name.ToString();
+                        treeView1.Nodes[0].Nodes[cntdrv].Nodes.Add(n, n, 3, 3);
                         treeView1.Update();
-                    }
+                        populate_folders_with_files(lstdir.FullName.ToString(), n);
+                        }
                     cntdrv++;
                 }
-
-
             }
+        }
+
+        private void populate_folders_with_folders(string dir, string test)
+        {
 
         }
+
+        private void populate_folders_with_files(string dir,string test)
+        {
+            string strFolder = dir;
+            
+            DirectoryInfo di = new DirectoryInfo(strFolder);
+            //Access is Denied if we Adventure into this folder... Just skipping it...
+            if (strFolder == @"C:\System Volume Information")
+            {
+                return;
+            }
+            FileInfo[] files = di.GetFiles();
+
+
+            foreach (FileInfo file in files)
+            {
+                string n = file.Name.ToString();
+                treeView1.Nodes[0].Nodes[cntdrv].Nodes[test].Nodes.Add(n, n, 1, 1);
+                treeView1.Update();
+            }
+        }
+            
+        
 
         private void Fill(TreeNode dirNode)
         {
