@@ -42,7 +42,8 @@ namespace DataPowerFileManager
             }          
             
             GlobalDataStore.GetInstance().strDataPowerHost = "dpowerxi50.prolifics.com";
-            GlobalDataStore.GetInstance().strDataPowerPort = "8080";          
+            GlobalDataStore.GetInstance().strDataPowerPort = "8080";
+            this.Close();
         }
     }
 }

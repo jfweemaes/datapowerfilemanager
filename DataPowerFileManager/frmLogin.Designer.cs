@@ -145,7 +145,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.HelpButton = true;
             this.Name = "frmLogin";
-            this.Opacity = 0;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DataPower Login";

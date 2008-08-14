@@ -90,8 +90,8 @@ namespace DataPowerFileManager
 
         private void returnToToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmLogin frm = new frmLogin();
-            frm.Show();
+            frmLogin frm34 = new frmLogin();
+            frm34.ShowDialog();
             //frm.ShowDialog();          
             
         }
