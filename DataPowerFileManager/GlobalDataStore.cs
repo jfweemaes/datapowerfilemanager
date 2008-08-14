@@ -8,12 +8,14 @@ namespace DataPowerFileManager
     class GlobalDataStore
     {
         private static GlobalDataStore _instance = new GlobalDataStore();
+               
         private string _strDataPowerHost = "";
         private string _strDataPowerPort = "";
 
+
         static GlobalDataStore()
         {
-        }
+        }       
 
         public static GlobalDataStore GetInstance()
         {

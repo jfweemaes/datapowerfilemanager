@@ -29,11 +29,11 @@ namespace DataPowerFileManager
 
         private void GetDataPowerDomains()
         {
-            appmgmtprotocol foo = new appmgmtprotocol();
+            //appmgmtprotocol foo = new appmgmtprotocol();
             
             //String[] fooarray = new string[100];
             GetDomainListRequest gdr = new GetDomainListRequest();
-            foo.GetDomainList(gdr).Items.CopyTo(combobox, 1);
+            Amp.GetAppInstance().GetDomainList(gdr).Items.CopyTo(combobox, 1);
             comboBox1.DataSource = tmp;
             comboBox1.DataSource = combobox;           
         }
@@ -90,10 +90,8 @@ namespace DataPowerFileManager
 
         private void returnToToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmLogin frm34 = new frmLogin();
-            frm34.ShowDialog();
-            //frm.ShowDialog();          
-            
+            frmLogin frm = new frmLogin();
+            frm.ShowDialog();           
         }
 
         
