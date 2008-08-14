@@ -30,7 +30,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Local Drives");
             this.cmbDataPowerDomains = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -163,12 +162,9 @@
             // 
             // treeView1
             // 
+            this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Location = new System.Drawing.Point(214, 144);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "nLocal";
-            treeNode1.Text = "Local Drives";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
             this.treeView1.Size = new System.Drawing.Size(251, 322);
             this.treeView1.TabIndex = 12;
             // 

@@ -22,6 +22,9 @@ namespace DataPowerFileManager
         String domain;
         char[] delimiterChars = {'/'};
         string[] words;
+        ImageList myImageList = new ImageList();
+    
+
 
         private int nIndex = 3;
         public string dirPath = "";
@@ -37,6 +40,14 @@ namespace DataPowerFileManager
             cmbDataPowerDomains.DataSource = combobox;
             cmbDataPowerDomains.SelectedIndex = 0;
             //listLocalDrive();
+
+            myImageList.Images.Add(Image.FromFile("pics/120px-Hdd_icon.svg.png"));
+            myImageList.Images.Add(Image.FromFile("pics/Hardware-CD-ROM-256x256.png"));
+            myImageList.Images.Add(Image.FromFile("pics/My_Computer.png"));
+            myImageList.Images.Add(Image.FromFile("pics/Open_Folder.png"));
+            treeView1.ImageList = myImageList;
+            treeView1.ImageIndex = 2;
+            
             
         }
 
@@ -66,7 +77,7 @@ namespace DataPowerFileManager
                           lstdir.Name.ToString();
                         treeView1.Nodes[0].Nodes
                           [cntdrv].Nodes.Add
-                             (n, n, 1);
+                             (n, n, 3, 3);
                         treeView1.Update();
                     }
                     cntdrv++;
@@ -246,13 +257,13 @@ namespace DataPowerFileManager
 
         private void frmMain_Load_1(object sender, EventArgs e)
         {
-            treeView1.Nodes.Add(System.Environment.MachineName, System.Environment.MachineName, 0);
+            treeView1.Nodes.Add(System.Environment.MachineName, System.Environment.MachineName, 2,2);
 
             string[] strdrives = Directory.GetLogicalDrives();
             foreach (string str in strdrives)
             {
                 TreeNode tndrive = new TreeNode(str);
-                treeView1.Nodes[0].Nodes.Add(str, str, 1);
+                treeView1.Nodes[0].Nodes.Add(str, str, 0,0);
                 //Fill(tndrive);
 
                 if (str == "C:\\")
