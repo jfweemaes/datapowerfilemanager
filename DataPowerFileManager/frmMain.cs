@@ -8,35 +8,119 @@ using System.Text;
 using System.Windows.Forms;
 using DataPowerFileManager.WebReference;
 using DataPowerFileManager.com.prolifics.dpowerxi50;
+using System.Xml.XPath;
+using System.Xml;
+using System.IO;
 
 namespace DataPowerFileManager
 {
     public partial class frmMain : Form
     {        
-        
-        String[] combobox = new string[100];
+        String[] combobox = new string[9];
         String[] tmp = new string[1];
         String[] list = new string[100];
         String domain;
+        char[] delimiterChars = {'/'};
+        string[] words;
+
+        private int nIndex = 3;
+        public string dirPath = "";
+        public string dirName = "";
+        public TreeNodeMouseClickEventArgs ev;
+        
+
 
         public frmMain()
         {
             InitializeComponent();
             combobox[0] = "default";
-            comboBox1.DataSource = combobox;
-            comboBox1.SelectedIndex = 0;          
+            cmbDataPowerDomains.DataSource = combobox;
+            cmbDataPowerDomains.SelectedIndex = 0;
+            //listLocalDrive();
+            
+        }
+
+        
+
+        private void populate_drive()
+        {
+            DriveInfo[] drvlist = DriveInfo.GetDrives();
+            int cnt = drvlist.Length;
+            int cntdrv = 0;
+            foreach (DriveInfo lst in drvlist)
+            {
+                if (lst.DriveType == DriveType.CDRom)
+                {
+                    cntdrv++;
+                }
+                else
+                {
+                    DirectoryInfo di = new
+                       DirectoryInfo(lst.ToString());
+                    DirectoryInfo[] di_list =
+                       di.GetDirectories();
+                    foreach (DirectoryInfo lstdir in
+                       di_list)
+                    {
+                        string n =
+                          lstdir.Name.ToString();
+                        treeView1.Nodes[0].Nodes
+                          [cntdrv].Nodes.Add
+                             (n, n, 1);
+                        treeView1.Update();
+                    }
+                    cntdrv++;
+                }
+
+
+            }
+
+        }
+
+        private void Fill(TreeNode dirNode)
+        {
+
+            DirectoryInfo dir = new DirectoryInfo(dirNode.FullPath);
+            try
+            {
+                foreach (DirectoryInfo dirItem in dir.GetDirectories())
+                {
+                    // Add node for the directory.
+                    TreeNode newNode = new TreeNode(dirItem.Name);
+                    dirNode.Nodes.Add(newNode);
+                    newNode.Nodes.Add("*");
+                }
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void GetDataPowerDomains()
-        {
-            //appmgmtprotocol foo = new appmgmtprotocol();
-            
-            //String[] fooarray = new string[100];
+        {            
             GetDomainListRequest gdr = new GetDomainListRequest();
-            Amp.GetAppInstance().GetDomainList(gdr).Items.CopyTo(combobox, 1);
-            comboBox1.DataSource = tmp;
-            comboBox1.DataSource = combobox;           
-        }
+            Amp.GetAppInstance().GetDomainList(gdr).Items.CopyTo(combobox, 0);
+            cmbDataPowerDomains.DataSource = tmp;
+            cmbDataPowerDomains.DataSource = combobox; 
+            //int tmp2 = combobox.Length;
+            //treeView1.Nodes.AddRange(combobox.);
+            //for(int index = 0; index < combobox.Length ; index++)
+            //            {
+            //                  string data = combobox[index].ToString();
+            //                  data = data.PadRight(20,' ');
+            //                  if(listView1.Items.Count > index)
+            //                  {
+            //                        data = listView1.Items[index].ToString() + data;
+            //                        listView1.Items.RemoveAt(index);
+            //                        listView1.Items.Insert(index, data) ;
+            //                  }
+            //                  else
+            //                        listView1.Items.Add(data);
+            //            }
+                  }
+           
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -45,15 +129,26 @@ namespace DataPowerFileManager
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            domain = combobox[comboBox1.SelectedIndex];
-            textBox1.Text = domain;
+            domain = combobox[cmbDataPowerDomains.SelectedIndex];
+            //textBox1.Text = domain;
         }
 
+        //public void listLocalDrive()
+        //{
+        //    string strFolder = @"\";
+        //    DirectoryInfo di = new DirectoryInfo(strFolder);
+        //    DirectoryInfo[] files2 = di.GetDirectories();
+        //    FileInfo[] files = di.GetFiles();
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        //    foreach (DirectoryInfo file in files2)
+        //    {
+        //        //lvLocalDrive.Items.Add(file.Name);
+        //        treeView1.Nodes.Add(file.Name);
+        //        //treeView1.Nodes.Add("Second Node");
+        //        //treeView1.Nodes.Add("Third Node");
+        //    }
+        //}
+        
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -70,13 +165,68 @@ namespace DataPowerFileManager
             responseFilestore xmlres1;
             xmlres1 = (responseFilestore) xmlres.Item;
 
+            // create a writer and open the file
+            
+            TextWriter tw = new StreamWriter("datapower.xml");
+            
+            // write a line of text to the file
+            tw.WriteLine("<foo>");
+            tw.WriteLine(xmlres1.Any[12].InnerXml.ToString());
+            //tw.WriteLine(xmlres.Item.);
+            tw.WriteLine("</foo>");
+            // close the stream
+            tw.Close();
+            
 
 
-            textBox1.Text = xmlres1.ToString();
-            textBox1.Text = xmlres1.Any[0].InnerXml.ToString();
+
+
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.Load("datapower.xml");
+
+            //XmlNode xnode = xmldoc.SelectSingleNode("/directory");
+
+            //XmlNodeReader nr = new XmlNodeReader(xnode);
+
+            //DataSet ds = new DataSet();
+
+            //ds.ReadXml(nr);
+
+            //dataGridView1.DataSource = ds.Tables[0];
+            //dataGridView1.Columns[0].Visible = false; 
+            
+
+
+
+
+
+            
+            System.IO.StringReader sr = new System.IO.StringReader(xmldoc.InnerXml);
+            XPathDocument doc = new XPathDocument(sr);
+            XPathNavigator nav = doc.CreateNavigator();
+            //XPathExpression expImgSize = nav.Compile(@" /foo/directory[*]/@name");
+            XPathExpression expImgSize = nav.Compile(@" /foo/directory[1]/file[*]/@name");
+            XPathNodeIterator iterImageSize = nav.Select(expImgSize);
+            if (iterImageSize != null)
+            {
+                while (iterImageSize.MoveNext())
+                {
+                    string imageSize = iterImageSize.Current.Value;
+                    words = imageSize.Split(delimiterChars);
+                    lvDataPower.Items.Add(words[0]);
+
+                }
+            }
+
+
+            //textBox1.Text = xmlres1.ToString();
+            //textBox1.Text = xmlres1.Any[0].InnerXml.ToString();
             //treeView1.da
              
         }
+
+        
+
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -92,6 +242,25 @@ namespace DataPowerFileManager
         {
             frmLogin frm = new frmLogin();
             frm.ShowDialog();           
+        }
+
+        private void frmMain_Load_1(object sender, EventArgs e)
+        {
+            treeView1.Nodes.Add(System.Environment.MachineName, System.Environment.MachineName, 0);
+
+            string[] strdrives = Directory.GetLogicalDrives();
+            foreach (string str in strdrives)
+            {
+                TreeNode tndrive = new TreeNode(str);
+                treeView1.Nodes[0].Nodes.Add(str, str, 1);
+                //Fill(tndrive);
+
+                if (str == "C:\\")
+                    treeView1.SelectedNode = tndrive;
+
+            }
+            populate_drive();
+            treeView1.Nodes[0].Expand();
         }
 
         

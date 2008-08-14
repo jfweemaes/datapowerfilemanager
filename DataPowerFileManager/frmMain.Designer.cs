@@ -29,34 +29,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Local Drives");
+            this.cmbDataPowerDomains = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.msMainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.returnToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.domainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.dataPowerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getDomainsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lvLocalDrive = new System.Windows.Forms.ListView();
+            this.lvDataPower = new System.Windows.Forms.ListView();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.msMainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cmbDataPowerDomains
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(137, 82);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbDataPowerDomains.FormattingEnabled = true;
+            this.cmbDataPowerDomains.Location = new System.Drawing.Point(492, 115);
+            this.cmbDataPowerDomains.Name = "cmbDataPowerDomains";
+            this.cmbDataPowerDomains.Size = new System.Drawing.Size(257, 21);
+            this.cmbDataPowerDomains.TabIndex = 2;
+            this.cmbDataPowerDomains.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 80);
+            this.button1.Location = new System.Drawing.Point(755, 115);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 23);
             this.button1.TabIndex = 3;
@@ -64,18 +67,9 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 142);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(354, 73);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 109);
+            this.button2.Location = new System.Drawing.Point(631, 492);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(98, 23);
             this.button2.TabIndex = 6;
@@ -83,35 +77,17 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // treeView1
+            // msMainMenu
             // 
-            this.treeView1.Location = new System.Drawing.Point(12, 222);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(354, 178);
-            this.treeView1.TabIndex = 7;
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.BeepOnError = true;
-            this.maskedTextBox1.Location = new System.Drawing.Point(137, 109);
-            this.maskedTextBox1.Mask = "000.000.000.000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(121, 20);
-            this.maskedTextBox1.TabIndex = 8;
-            this.maskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.domainToolStripMenuItem,
+            this.dataPowerToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(378, 24);
-            this.menuStrip1.TabIndex = 9;
-            this.menuStrip1.Text = "menuStrip1";
+            this.msMainMenu.Location = new System.Drawing.Point(0, 0);
+            this.msMainMenu.Name = "msMainMenu";
+            this.msMainMenu.Size = new System.Drawing.Size(865, 24);
+            this.msMainMenu.TabIndex = 9;
+            this.msMainMenu.Text = "Main Menu";
             // 
             // fileToolStripMenuItem
             // 
@@ -136,12 +112,6 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // domainToolStripMenuItem
-            // 
-            this.domainToolStripMenuItem.Name = "domainToolStripMenuItem";
-            this.domainToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.domainToolStripMenuItem.Text = "Domain";
-            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -156,25 +126,72 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
+            // dataPowerToolStripMenuItem
+            // 
+            this.dataPowerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.getDomainsToolStripMenuItem});
+            this.dataPowerToolStripMenuItem.Name = "dataPowerToolStripMenuItem";
+            this.dataPowerToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.dataPowerToolStripMenuItem.Text = "DataPower";
+            // 
+            // getDomainsToolStripMenuItem
+            // 
+            this.getDomainsToolStripMenuItem.Name = "getDomainsToolStripMenuItem";
+            this.getDomainsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.getDomainsToolStripMenuItem.Text = "Get Domains";
+            // 
+            // lvLocalDrive
+            // 
+            this.lvLocalDrive.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.lvLocalDrive.Location = new System.Drawing.Point(12, 144);
+            this.lvLocalDrive.Name = "lvLocalDrive";
+            this.lvLocalDrive.Size = new System.Drawing.Size(177, 322);
+            this.lvLocalDrive.TabIndex = 10;
+            this.lvLocalDrive.UseCompatibleStateImageBehavior = false;
+            this.lvLocalDrive.View = System.Windows.Forms.View.List;
+            // 
+            // lvDataPower
+            // 
+            this.lvDataPower.Location = new System.Drawing.Point(492, 144);
+            this.lvDataPower.Name = "lvDataPower";
+            this.lvDataPower.Size = new System.Drawing.Size(361, 322);
+            this.lvDataPower.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lvDataPower.TabIndex = 11;
+            this.lvDataPower.UseCompatibleStateImageBehavior = false;
+            this.lvDataPower.View = System.Windows.Forms.View.Details;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(214, 144);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "nLocal";
+            treeNode1.Text = "Local Drives";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            this.treeView1.Size = new System.Drawing.Size(251, 322);
+            this.treeView1.TabIndex = 12;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(378, 412);
+            this.ClientSize = new System.Drawing.Size(865, 527);
             this.ControlBox = false;
-            this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.lvDataPower);
+            this.Controls.Add(this.lvLocalDrive);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.cmbDataPowerDomains);
+            this.Controls.Add(this.msMainMenu);
+            this.MainMenuStrip = this.msMainMenu;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DataPowerFileManager";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.Load += new System.EventHandler(this.frmMain_Load_1);
+            this.msMainMenu.ResumeLayout(false);
+            this.msMainMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,19 +199,20 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbDataPowerDomains;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip msMainMenu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem returnToToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem domainToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dataPowerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getDomainsToolStripMenuItem;
+        private System.Windows.Forms.ListView lvLocalDrive;
+        private System.Windows.Forms.ListView lvDataPower;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }
 
