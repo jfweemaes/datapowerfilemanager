@@ -12,8 +12,7 @@ using DataPowerFileManager.com.prolifics.dpowerxi50;
 namespace DataPowerFileManager
 {
     public partial class frmMain : Form
-    {
-
+    {        
         appmgmtprotocol foo = new appmgmtprotocol();
         xmlmgmt bar = new xmlmgmt();
         String[] combobox = new string[100];
@@ -26,8 +25,7 @@ namespace DataPowerFileManager
             InitializeComponent();
             combobox[0] = "default";
             comboBox1.DataSource = combobox;
-            comboBox1.SelectedIndex = 0;
-          
+            comboBox1.SelectedIndex = 0;          
         }
 
         private void GetDataPowerDomains()
@@ -36,9 +34,7 @@ namespace DataPowerFileManager
             GetDomainListRequest gdr = new GetDomainListRequest();
             foo.GetDomainList(gdr).Items.CopyTo(combobox, 1);
             comboBox1.DataSource = tmp;
-            comboBox1.DataSource = combobox;
-
-           
+            comboBox1.DataSource = combobox;           
         }
 
         private void button1_Click(object sender, EventArgs e)

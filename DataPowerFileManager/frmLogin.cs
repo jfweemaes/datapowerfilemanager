@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using DataPowerFileManager.WebReference;
+using DataPowerFileManager.com.prolifics.dpowerxi50;
 
 namespace DataPowerFileManager
 {
@@ -49,17 +51,20 @@ namespace DataPowerFileManager
 
             if (txtDataPowerIP.Text.Length <= 0)
             {
-                MessageBox.Show("Please Enter a DataPower IP");
+                MessageBox.Show("Please Enter a DataPower IP");                
                 return;
             }
-
+            GlobalDataStore pt = new GlobalDataStore();
+            
             //Show other forms in seperate thread
             Thread t = new Thread(new ThreadStart(ShowForms));
             t.IsBackground = false;
             t.Start();
-
+            GlobalDataStore.GetInstance().strDataPowerHost = "dpowerxi50.prolifics.com";
+            GlobalDataStore.GetInstance().strDataPowerPort = "8080";
             //Close the main form - this will exit the main
             //UI thread message pump, but we will have another one
+            //this.Hide();
             this.Close();            
            
         }
@@ -101,6 +106,8 @@ namespace DataPowerFileManager
             fltOpacity = fltOpacity + .1F;
             this.Opacity = fltOpacity;
         }
+
+       
 
         
     }

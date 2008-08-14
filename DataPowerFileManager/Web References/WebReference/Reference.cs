@@ -76,8 +76,9 @@ namespace DataPowerFileManager.WebReference {
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
-        public appmgmtprotocol() {
-            this.Url = "http://dpowerxi50.prolifics.com:8080/service/mgmt/amp/1.0";
+        public appmgmtprotocol() {            
+            this.Url = "http://" + GlobalDataStore.GetInstance().strDataPowerHost + ":" 
+                + GlobalDataStore.GetInstance().strDataPowerPort + "/service/mgmt/amp/1.0";
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
