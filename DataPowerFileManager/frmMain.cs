@@ -76,16 +76,26 @@ namespace DataPowerFileManager
                         treeView1.Nodes[0].Nodes[cntdrv].Nodes.Add(n, n, 3, 3);
                         treeView1.Update();
                         populate_folders_with_files(lstdir.FullName.ToString(), n);
-                        }
+                    }
                     cntdrv++;
                 }
             }
         }
 
-        private void populate_folders_with_folders(string dir, string test)
-        {
+        //private void populate_folders_with_folders(string dir, string test)
+        //{
+        //    string strFolder = dir;
 
-        }
+        //    DirectoryInfo di = new DirectoryInfo(strFolder);
+            
+        //    DirectoryInfo[] di_list = di.GetDirectories();
+        //    foreach (DirectoryInfo lstdir in di_list)
+        //    {
+        //        string n = file.Name.ToString();
+        //        treeView1.Nodes[0].Nodes[cntdrv].Nodes[test].Nodes.Add(n, n, 3, 3);
+        //        treeView1.Update();
+        //    }
+        //}
 
         private void populate_folders_with_files(string dir,string test)
         {
@@ -252,13 +262,67 @@ namespace DataPowerFileManager
             }
 
 
+
+            try
+            {
+                
+                // SECTION 2. Initialize the TreeView control.
+                treeView2.Nodes.Clear();
+                treeView2.Nodes.Add(new TreeNode(xmldoc.DocumentElement.Name));
+                TreeNode tNode = new TreeNode();
+                tNode = treeView2.Nodes[0];
+
+                // SECTION 3. Populate the TreeView with the DOM nodes.
+                AddNode(xmldoc.DocumentElement, tNode);
+                treeView2.ExpandAll();
+            }
+            catch (XmlException xmlEx)
+            {
+                MessageBox.Show(xmlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+		
+
+
             //textBox1.Text = xmlres1.ToString();
             //textBox1.Text = xmlres1.Any[0].InnerXml.ToString();
             //treeView1.da
              
         }
 
-        
+        private void AddNode(XmlNode inXmlNode, TreeNode inTreeNode)
+      {
+         XmlNode xNode;
+         TreeNode tNode;
+         XmlNodeList nodeList;
+         int i;
+
+         // Loop through the XML nodes until the leaf is reached.
+         // Add the nodes to the TreeView during the looping process.
+         if (inXmlNode.HasChildNodes)
+         {
+            nodeList = inXmlNode.ChildNodes;
+            for(i = 0; i<=nodeList.Count - 1; i++)
+            {
+               xNode = inXmlNode.ChildNodes[i];
+               inTreeNode.Nodes.Add(new TreeNode(xNode.Name));
+               tNode = inTreeNode.Nodes[i];
+               AddNode(xNode, tNode);
+            }
+         }
+         else
+         {
+            // Here you need to pull the data from the XmlNode based on the
+            // type of node, whether attribute values are required, and so forth.
+            inTreeNode.Text = (inXmlNode.OuterXml).Trim();
+         }
+      }                  
+   
+
+
 
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)

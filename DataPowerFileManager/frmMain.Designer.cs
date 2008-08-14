@@ -29,7 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Test");
             this.cmbDataPowerDomains = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -44,6 +44,7 @@
             this.lvLocalDrive = new System.Windows.Forms.ListView();
             this.lvDataPower = new System.Windows.Forms.ListView();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeView2 = new System.Windows.Forms.TreeView();
             this.msMainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -142,19 +143,19 @@
             // lvLocalDrive
             // 
             this.lvLocalDrive.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.lvLocalDrive.Location = new System.Drawing.Point(12, 144);
+            listViewItem3});
+            this.lvLocalDrive.Location = new System.Drawing.Point(12, 48);
             this.lvLocalDrive.Name = "lvLocalDrive";
-            this.lvLocalDrive.Size = new System.Drawing.Size(177, 322);
+            this.lvLocalDrive.Size = new System.Drawing.Size(177, 31);
             this.lvLocalDrive.TabIndex = 10;
             this.lvLocalDrive.UseCompatibleStateImageBehavior = false;
             this.lvLocalDrive.View = System.Windows.Forms.View.List;
             // 
             // lvDataPower
             // 
-            this.lvDataPower.Location = new System.Drawing.Point(492, 144);
+            this.lvDataPower.Location = new System.Drawing.Point(492, 36);
             this.lvDataPower.Name = "lvDataPower";
-            this.lvDataPower.Size = new System.Drawing.Size(361, 322);
+            this.lvDataPower.Size = new System.Drawing.Size(361, 60);
             this.lvDataPower.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvDataPower.TabIndex = 11;
             this.lvDataPower.UseCompatibleStateImageBehavior = false;
@@ -162,11 +163,21 @@
             // 
             // treeView1
             // 
+            this.treeView1.AllowDrop = true;
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView1.Location = new System.Drawing.Point(214, 144);
+            this.treeView1.Location = new System.Drawing.Point(42, 164);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(251, 322);
             this.treeView1.TabIndex = 12;
+            // 
+            // treeView2
+            // 
+            this.treeView2.AllowDrop = true;
+            this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView2.Location = new System.Drawing.Point(365, 164);
+            this.treeView2.Name = "treeView2";
+            this.treeView2.Size = new System.Drawing.Size(445, 322);
+            this.treeView2.TabIndex = 13;
             // 
             // frmMain
             // 
@@ -174,6 +185,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(865, 527);
             this.ControlBox = false;
+            this.Controls.Add(this.treeView2);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.lvDataPower);
             this.Controls.Add(this.lvLocalDrive);
@@ -209,6 +221,7 @@
         private System.Windows.Forms.ListView lvLocalDrive;
         private System.Windows.Forms.ListView lvDataPower;
         private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeView2;
     }
 }
 
