@@ -6,9 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Threading;
-using DataPowerFileManager.WebReference;
-using DataPowerFileManager.com.prolifics.dpowerxi50;
 
 namespace DataPowerFileManager
 {
@@ -45,17 +42,7 @@ namespace DataPowerFileManager
             }          
             
             GlobalDataStore.GetInstance().strDataPowerHost = "dpowerxi50.prolifics.com";
-            GlobalDataStore.GetInstance().strDataPowerPort = "8080";
-                       
-           
+            GlobalDataStore.GetInstance().strDataPowerPort = "8080";          
         }
-
-        
-
-        
-
-       
-
-        
     }
 }

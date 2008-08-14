@@ -143,11 +143,13 @@
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.HelpButton = true;
             this.Name = "frmLogin";
             this.Opacity = 0;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmLogin";
+            this.Text = "DataPower Login";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 
