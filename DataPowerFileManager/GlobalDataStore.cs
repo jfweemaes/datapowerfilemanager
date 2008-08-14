@@ -43,5 +43,6 @@ namespace DataPowerFileManager
                 _strDataPowerPort = value;
             }
         }
+
     }
 }

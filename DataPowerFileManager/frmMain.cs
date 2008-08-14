@@ -13,8 +13,7 @@ namespace DataPowerFileManager
 {
     public partial class frmMain : Form
     {        
-        appmgmtprotocol foo = new appmgmtprotocol();
-        xmlmgmt bar = new xmlmgmt();
+        
         String[] combobox = new string[100];
         String[] tmp = new string[1];
         String[] list = new string[100];
@@ -30,6 +29,8 @@ namespace DataPowerFileManager
 
         private void GetDataPowerDomains()
         {
+            appmgmtprotocol foo = new appmgmtprotocol();
+            
             //String[] fooarray = new string[100];
             GetDomainListRequest gdr = new GetDomainListRequest();
             foo.GetDomainList(gdr).Items.CopyTo(combobox, 1);
@@ -56,6 +57,7 @@ namespace DataPowerFileManager
 
         private void button2_Click(object sender, EventArgs e)
         {
+            xmlmgmt bar = new xmlmgmt();
             requestGetfilestore rgf = new requestGetfilestore();
             rgf.location = filestorelocation.local;
             rgf.annotated = true;
@@ -83,9 +85,8 @@ namespace DataPowerFileManager
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmLogin frm = new frmLogin();
-            frm.Visible = true;
-            frm.Close();
+            
+            
             this.Close();
             
         }
@@ -93,8 +94,8 @@ namespace DataPowerFileManager
         private void returnToToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmLogin frm = new frmLogin();
-            frm.Visible = true;            
-            this.Close();
+            frm.ShowDialog();          
+            
         }
 
         
