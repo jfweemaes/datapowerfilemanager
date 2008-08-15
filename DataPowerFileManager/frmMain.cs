@@ -11,6 +11,7 @@ using DataPowerFileManager.com.prolifics.dpowerxi50;
 using System.Xml.XPath;
 using System.Xml;
 using System.IO;
+using System.Xml.Xsl;
 
 namespace DataPowerFileManager
 {
@@ -227,11 +228,46 @@ namespace DataPowerFileManager
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.Load("datapower.xml");
 
-            //XmlNode xnode = xmldoc.SelectSingleNode("/directory");
 
+
+            XslTransform myXslTrans = new XslTransform() ;
+            myXslTrans.Load("datapower.xslt");
+            XmlTextWriter myWriter = new XmlTextWriter("result.xml", null);
+
+            myXslTrans.Transform(xmldoc, null, myWriter);
+            myWriter.Close();
+            xmldoc.Load("result.xml");
+
+
+
+
+
+
+            //string size = null;
+            //string modified = null;
+            //XmlNodeList list = null;
+            //XmlNodeReader reader = null;
+
+            //list = xmldoc.GetElementsByTagName("file");
+            //foreach (XmlNode n in list)
+            //{
+            //    reader = new XmlNodeReader(n);
+            //    reader.Read();
+            //    string test = reader.GetAttribute("name");
+            //    modified = n[modified].InnerText;
+            //    size = n["size"].InnerText;  //do something with s
+            //}
+
+
+
+            
+            
+            //XmlNodeList xnode = xmldoc.SelectNodes(@" /foo/directory[1]/file[*]/@name");
+            //XmlNode xnode = xmldoc.SelectNodes(@" /foo/directory[1]/file[*]/@name");
+            
             //XmlNodeReader nr = new XmlNodeReader(xnode);
 
-            //DataSet ds = new DataSet();
+            DataSet ds = new DataSet();
 
             //ds.ReadXml(nr);
 
@@ -265,7 +301,7 @@ namespace DataPowerFileManager
 
             try
             {
-                
+
                 // SECTION 2. Initialize the TreeView control.
                 treeView2.Nodes.Clear();
                 treeView2.Nodes.Add(new TreeNode(xmldoc.DocumentElement.Name));
