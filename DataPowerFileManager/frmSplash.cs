@@ -23,15 +23,15 @@ namespace DataPowerFileManager
         {
             fltOpacity = fltOpacity + .1F;
             Thread.Sleep(100);
-            this.Opacity = fltOpacity;
+            //this.Opacity = fltOpacity;
             if (fltOpacity >= 1)
             {
                 Thread.Sleep(1000);
-                this.Opacity = 0;
+                //this.Opacity = 0;
                 frmMain frm = new frmMain();
-                tSplash.Stop();
-                frm.ShowDialog();
-                this.Close();
+                //tSplash.Stop();
+                //frm.ShowDialog();
+                //this.Close();
             }
         }
         
