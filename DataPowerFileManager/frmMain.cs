@@ -213,11 +213,17 @@ namespace DataPowerFileManager
             // create a writer and open the file
             
             TextWriter tw = new StreamWriter("datapower.xml");
-            
-            // write a line of text to the file
+            string test = xmlres1.Any.Length.ToString();
+            int test2 = Convert.ToInt32(test);
             tw.WriteLine("<foo>");
-            tw.WriteLine(xmlres1.Any[10].InnerXml.ToString());
-            //tw.WriteLine(xmlres.Item.);
+            for (int i = 0; i <=test2  - 1; i++)
+            {
+                // write a line of text to the file
+                tw.WriteLine("<foo"+i+">");
+                tw.WriteLine(xmlres1.Any[i].InnerXml.ToString());
+                //tw.WriteLine(xmlres.Item.);
+                tw.WriteLine("</foo"+i+">");
+            }
             tw.WriteLine("</foo>");
             // close the stream
             tw.Close();

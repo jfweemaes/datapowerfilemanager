@@ -27,7 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
+        {            
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.MaskedTextBox();
             this.txtDataPowerIP = new System.Windows.Forms.MaskedTextBox();
@@ -66,15 +66,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(74, 80);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "UserName";
+            this.label1.Text = "UserName";            
+            
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(74, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
@@ -84,6 +87,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Location = new System.Drawing.Point(74, 134);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
@@ -114,6 +118,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Location = new System.Drawing.Point(74, 160);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 13);
@@ -142,16 +147,23 @@
             this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Gray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(506, 247);
-            this.Controls.Add(this.label5);
+            this.ClientSize = new System.Drawing.Size(510, 251);
+            //this.Controls.Add(this.label5);
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            //this.Controls.Add(this.label3);
+            //this.Controls.Add(this.label2);
+            //this.Controls.Add(this.label1);
+            this.pictureBox1.Controls.Add(this.label1);
+            this.pictureBox1.Controls.Add(this.label2);
+            this.pictureBox1.Controls.Add(this.label3);
+            this.pictureBox1.Controls.Add(this.label5);
+
+
             this.Controls.Add(this.txtDataPowerIP);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
