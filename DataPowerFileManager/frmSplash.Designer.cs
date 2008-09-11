@@ -42,7 +42,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Gray;
-            this.pictureBox2.BackgroundImage = global::DataPowerFileManager.Properties.Resources.Vista_Glass3;
+            this.pictureBox2.BackgroundImage = global::DataPowerFileManager.Properties.Resources.DataPowerSplash;
             this.pictureBox2.Location = new System.Drawing.Point(62, 53);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(617, 319);

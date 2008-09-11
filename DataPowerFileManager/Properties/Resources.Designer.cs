@@ -60,9 +60,9 @@ namespace DataPowerFileManager.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Vista_Glass3 {
+        internal static System.Drawing.Bitmap DataPowerSplash {
             get {
-                object obj = ResourceManager.GetObject("Vista_Glass3", resourceCulture);
+                object obj = ResourceManager.GetObject("DataPowerSplash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
