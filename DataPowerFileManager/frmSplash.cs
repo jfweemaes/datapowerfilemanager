@@ -12,8 +12,6 @@ namespace DataPowerFileManager
 {
     public partial class frmSplash : Form
     {
-        float fltOpacity = 0.01F;        
-
         public frmSplash()
         {
             InitializeComponent();
@@ -21,19 +19,12 @@ namespace DataPowerFileManager
 
         private void tSplash_Tick(object sender, EventArgs e)
         {
-            fltOpacity = fltOpacity + .1F;
-            Thread.Sleep(100);
-            //this.Opacity = fltOpacity;
-            if (fltOpacity >= 1)
-            {
-                Thread.Sleep(1000);
-                //this.Opacity = 0;
-                frmMain frm = new frmMain();
-                //tSplash.Stop();
-                //frm.ShowDialog();
-                //this.Close();
-            }
-        }
-        
+            Thread.Sleep(2000);
+            this.Hide();
+            frmMain frm = new frmMain();
+            tSplash.Stop();
+            frm.ShowDialog();
+            this.Close();
+        }       
     }
 }
