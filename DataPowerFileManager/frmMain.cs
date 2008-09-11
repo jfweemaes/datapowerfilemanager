@@ -45,12 +45,12 @@ namespace DataPowerFileManager
             cmbDataPowerDomains.SelectedIndex = 0;
             //listLocalDrive();
 
-            myImageList.Images.Add(Image.FromFile("pics/120px-Hdd_icon.svg.png"));
-            myImageList.Images.Add(Image.FromFile("pics/Hardware-CD-ROM-256x256.png"));
-            myImageList.Images.Add(Image.FromFile("pics/My_Computer.png"));
-            myImageList.Images.Add(Image.FromFile("pics/Open_Folder.png"));
-            treeView1.ImageList = myImageList;
-            treeView1.ImageIndex = 2;
+            //myImageList.Images.Add(Image.FromFile("pics/120px-Hdd_icon.svg.png"));
+            //myImageList.Images.Add(Image.FromFile("pics/Hardware-CD-ROM-256x256.png"));
+            //myImageList.Images.Add(Image.FromFile("pics/My_Computer.png"));
+            //myImageList.Images.Add(Image.FromFile("pics/Open_Folder.png"));
+            //treeView1.ImageList = myImageList;
+            //treeView1.ImageIndex = 2;
             
             
         }
