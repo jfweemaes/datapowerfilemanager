@@ -25,20 +25,20 @@ namespace DataPowerFileManager
         {            
             if (txtUsername.Text.Length <= 0)
             {
-                MessageBox.Show("Please Enter A Username");
-                return;
+                //MessageBox.Show("Please Enter A Username");
+                //return;
             }
 
             if (txtPassword.Text.Length <= 0)
             {
-                MessageBox.Show("Please Enter A Password");
-                return;
+                //MessageBox.Show("Please Enter A Password");
+                //return;
             }
 
             if (txtDataPowerIP.Text.Length <= 0)
             {
-                MessageBox.Show("Please Enter a DataPower IP");                
-                return;
+                //MessageBox.Show("Please Enter a DataPower IP");                
+                //return;
             }          
             
             GlobalDataStore.GetInstance().strDataPowerHost = "dpowerxi50.prolifics.com";

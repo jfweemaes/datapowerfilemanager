@@ -18,7 +18,7 @@ namespace DataPowerFileManager
 {
     public partial class frmMain : Form
     {        
-        String[] combobox = new string[9];
+        String[] combobox = new string[1000];
         String[] tmp = new string[1];
         String[] list = new string[100];
         String domain;
@@ -216,7 +216,7 @@ namespace DataPowerFileManager
             
             // write a line of text to the file
             tw.WriteLine("<foo>");
-            tw.WriteLine(xmlres1.Any[12].InnerXml.ToString());
+            tw.WriteLine(xmlres1.Any[10].InnerXml.ToString());
             //tw.WriteLine(xmlres.Item.);
             tw.WriteLine("</foo>");
             // close the stream
