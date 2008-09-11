@@ -12,6 +12,7 @@ using System.Xml.XPath;
 using System.Xml;
 using System.IO;
 using System.Xml.Xsl;
+using System.Reflection;
 
 namespace DataPowerFileManager
 {
@@ -226,14 +227,16 @@ namespace DataPowerFileManager
 
 
             XmlDocument xmldoc = new XmlDocument();
+            //xmldoc.Load(DataPowerFileManager
             xmldoc.Load("datapower.xml");
 
 
 
             XslTransform myXslTrans = new XslTransform() ;
-            myXslTrans.Load("datapower.xslt");
+            //myXslTrans.Load("datapower.xslt");
+            XmlTextReader xsltReader = new XmlTextReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("DataPowerFileManager.DataPower FileSystem Transformations.xslt"));
             XmlTextWriter myWriter = new XmlTextWriter("result.xml", null);
-
+            myXslTrans.Load(xsltReader, null, null);
             myXslTrans.Transform(xmldoc, null, myWriter);
             myWriter.Close();
             xmldoc.Load("result.xml");
