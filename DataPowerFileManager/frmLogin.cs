@@ -15,10 +15,10 @@ namespace DataPowerFileManager
         public frmLogin()
         {           
             InitializeComponent();
-            this.label1.Location = new System.Drawing.Point(135, 121);//start
-            this.label2.Location = new System.Drawing.Point(135, 147);//26
-            this.label3.Location = new System.Drawing.Point(135, 173);//26
-            this.label5.Location = new System.Drawing.Point(135, 199);//26
+            //this.label1.Location = new System.Drawing.Point(135, 121);//start
+            //this.label2.Location = new System.Drawing.Point(135, 147);//26
+            //this.label3.Location = new System.Drawing.Point(135, 173);//26
+            //this.label5.Location = new System.Drawing.Point(135, 199);//26
             
         }
         
