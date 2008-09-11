@@ -19,7 +19,7 @@ namespace DataPowerFileManager
 
         private void tSplash_Tick(object sender, EventArgs e)
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             this.Hide();
             frmMain frm = new frmMain();
             tSplash.Stop();

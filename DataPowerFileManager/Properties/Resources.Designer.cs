@@ -60,6 +60,13 @@ namespace DataPowerFileManager.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Background {
+            get {
+                object obj = ResourceManager.GetObject("Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap DataPowerSplash {
             get {
                 object obj = ResourceManager.GetObject("DataPowerSplash", resourceCulture);

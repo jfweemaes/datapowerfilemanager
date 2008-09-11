@@ -234,13 +234,13 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DataPower Splash.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Background.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataPower FileSystem Transformations.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DataPowerSplash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
