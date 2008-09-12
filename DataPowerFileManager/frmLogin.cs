@@ -14,7 +14,7 @@ namespace DataPowerFileManager
 {
     public partial class frmLogin : Form
     {
-        GlobalDataStore gs = new GlobalDataStore();
+        //GlobalDataStore gs = new GlobalDataStore();
 
         public frmLogin()
         {           
@@ -52,11 +52,17 @@ namespace DataPowerFileManager
                 //return;
             }
 
-            gs.strDataPowerUserName = txtUsername.Text.ToString();
-            gs.strDataPowerPassword = txtPassword.Text.ToString();
+            if (txtPortNumber.Text.Length <= 0)
+            {
+                //MessageBox.Show("Please Enter a DataPower IP");                
+                //return;
+            }
+
+            GlobalDataStore.GetInstance().strDataPowerUserName = txtUsername.Text.ToString();
+            GlobalDataStore.GetInstance().strDataPowerPassword = txtPassword.Text.ToString();
            
-            gs.strDataPowerHost = "dpowerxi50.prolifics.com";
-            gs.strDataPowerPort = "8080";
+            GlobalDataStore.GetInstance().strDataPowerHost = txtDataPowerIP.Text.ToString();
+            GlobalDataStore.GetInstance().strDataPowerPort = txtPortNumber.Text.ToString();
             this.Close();
         }
 
@@ -64,16 +70,16 @@ namespace DataPowerFileManager
         {
             string target = @"sessions";
 
-            gs.strDataPowerUserName = txtUsername.Text.ToString();
-            gs.strDataPowerPassword = txtPassword.Text.ToString();
-            gs.strDataPowerHost = "dpowerxi50.prolifics.com";
-            gs.strDataPowerPort = "8080";
+            GlobalDataStore.GetInstance().strDataPowerUserName = txtUsername.Text.ToString();
+            GlobalDataStore.GetInstance().strDataPowerPassword = txtPassword.Text.ToString();
+            GlobalDataStore.GetInstance().strDataPowerHost = txtDataPowerIP.Text.ToString();
+            GlobalDataStore.GetInstance().strDataPowerPort = txtPortNumber.Text.ToString();
 
             // Before encrypting data, we will append plain text to a random
             // salt value, which will be between 4 and 8 bytes long (implicitly
             // used defaults).
             RijndaelEnhanced rijndaelKey =
-                new RijndaelEnhanced(gs.strPassPhrase, gs.strInitVector);     
+                new RijndaelEnhanced(GlobalDataStore.GetInstance().strPassPhrase, GlobalDataStore.GetInstance().strInitVector);     
 
                        
 
@@ -84,28 +90,28 @@ namespace DataPowerFileManager
                 Directory.CreateDirectory(target);
             }
             
-            TextWriter tw = new StreamWriter("sessions/"+gs.strDataPowerUserName+"@"+gs.strDataPowerHost+".xml");
+            TextWriter tw = new StreamWriter("sessions/"+GlobalDataStore.GetInstance().strDataPowerUserName+"@"+GlobalDataStore.GetInstance().strDataPowerHost+".xml");
             XmlTextWriter write = new XmlTextWriter(tw);
             write.Formatting = Formatting.Indented;
             write.WriteStartDocument(true);
             write.WriteComment("Saved Sessions for DataPower File Manager");
             write.WriteStartElement("DataPower");
             
-            gs.strPlainText = gs.strDataPowerUserName;
-            gs.strCipherText = rijndaelKey.Encrypt(gs.strPlainText);
-            write.WriteElementString("username", gs.strCipherText);
+            GlobalDataStore.GetInstance().strPlainText = GlobalDataStore.GetInstance().strDataPowerUserName;
+            GlobalDataStore.GetInstance().strCipherText = rijndaelKey.Encrypt(GlobalDataStore.GetInstance().strPlainText);
+            write.WriteElementString("username", GlobalDataStore.GetInstance().strCipherText);
             
-            gs.strPlainText = gs.strDataPowerPassword;
-            gs.strCipherText = rijndaelKey.Encrypt(gs.strPlainText);
-            write.WriteElementString("password", gs.strCipherText);
+            GlobalDataStore.GetInstance().strPlainText = GlobalDataStore.GetInstance().strDataPowerPassword;
+            GlobalDataStore.GetInstance().strCipherText = rijndaelKey.Encrypt(GlobalDataStore.GetInstance().strPlainText);
+            write.WriteElementString("password", GlobalDataStore.GetInstance().strCipherText);
             
-            gs.strPlainText = gs.strDataPowerHost;
-            gs.strCipherText = rijndaelKey.Encrypt(gs.strPlainText);
-            write.WriteElementString("host", gs.strCipherText);
+            GlobalDataStore.GetInstance().strPlainText = GlobalDataStore.GetInstance().strDataPowerHost;
+            GlobalDataStore.GetInstance().strCipherText = rijndaelKey.Encrypt(GlobalDataStore.GetInstance().strPlainText);
+            write.WriteElementString("host", GlobalDataStore.GetInstance().strCipherText);
             
-            gs.strPlainText = gs.strDataPowerPort;
-            gs.strCipherText = rijndaelKey.Encrypt(gs.strPlainText);
-            write.WriteElementString("port", gs.strCipherText);
+            GlobalDataStore.GetInstance().strPlainText = GlobalDataStore.GetInstance().strDataPowerPort;
+            GlobalDataStore.GetInstance().strCipherText = rijndaelKey.Encrypt(GlobalDataStore.GetInstance().strPlainText);
+            write.WriteElementString("port", GlobalDataStore.GetInstance().strCipherText);
             
             write.WriteEndElement();
             write.WriteEndDocument();
@@ -129,7 +135,7 @@ namespace DataPowerFileManager
         private void cmbSavedSessions_SelectedIndexChanged(object sender, EventArgs e)
         {
             RijndaelEnhanced rijndaelKey =
-                new RijndaelEnhanced(gs.strPassPhrase, gs.strInitVector); 
+                new RijndaelEnhanced(GlobalDataStore.GetInstance().strPassPhrase, GlobalDataStore.GetInstance().strInitVector); 
 
             TextReader tr = new StreamReader("sessions/"+cmbSavedSessions.SelectedItem.ToString());
             XmlReader reader = new XmlTextReader(tr);
@@ -141,24 +147,24 @@ namespace DataPowerFileManager
                     switch (reader.LocalName)
                     {
                         case "username":
-                            gs.strCipherText = reader.ReadElementString();
-                            gs.strDataPowerUserName = rijndaelKey.Decrypt(gs.strCipherText);
-                            txtUsername.Text = gs.strDataPowerUserName;
+                            GlobalDataStore.GetInstance().strCipherText = reader.ReadElementString();
+                            GlobalDataStore.GetInstance().strDataPowerUserName = rijndaelKey.Decrypt(GlobalDataStore.GetInstance().strCipherText);
+                            txtUsername.Text = GlobalDataStore.GetInstance().strDataPowerUserName;
                             break;
                         case "password":
-                            gs.strCipherText = reader.ReadElementString();
-                            gs.strDataPowerPassword = rijndaelKey.Decrypt(gs.strCipherText);
-                            txtPassword.Text = gs.strDataPowerPassword;
+                            GlobalDataStore.GetInstance().strCipherText = reader.ReadElementString();
+                            GlobalDataStore.GetInstance().strDataPowerPassword = rijndaelKey.Decrypt(GlobalDataStore.GetInstance().strCipherText);
+                            txtPassword.Text = GlobalDataStore.GetInstance().strDataPowerPassword;
                             break;
                         case "host":
-                            gs.strCipherText = reader.ReadElementString();
-                            gs.strDataPowerHost = rijndaelKey.Decrypt(gs.strCipherText);
-                            txtDataPowerIP.Text = gs.strDataPowerHost;
+                            GlobalDataStore.GetInstance().strCipherText = reader.ReadElementString();
+                            GlobalDataStore.GetInstance().strDataPowerHost = rijndaelKey.Decrypt(GlobalDataStore.GetInstance().strCipherText);
+                            txtDataPowerIP.Text = GlobalDataStore.GetInstance().strDataPowerHost;
                             break;
                         case "port":
-                            gs.strCipherText = reader.ReadElementString();
-                            gs.strDataPowerPort = rijndaelKey.Decrypt(gs.strCipherText);
-                            txtPortNumber.Text = gs.strDataPowerPort;
+                            GlobalDataStore.GetInstance().strCipherText = reader.ReadElementString();
+                            GlobalDataStore.GetInstance().strDataPowerPort = rijndaelKey.Decrypt(GlobalDataStore.GetInstance().strCipherText);
+                            txtPortNumber.Text = GlobalDataStore.GetInstance().strDataPowerPort;
                             break;
                     }
                 }
