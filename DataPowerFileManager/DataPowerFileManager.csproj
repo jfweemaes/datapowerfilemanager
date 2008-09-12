@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Amp.cs" />
+    <Compile Include="Encrypt_Decrypt.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -162,6 +162,7 @@
             this.cmbSavedSessions.Name = "cmbSavedSessions";
             this.cmbSavedSessions.Size = new System.Drawing.Size(232, 21);
             this.cmbSavedSessions.TabIndex = 13;
+            this.cmbSavedSessions.SelectedIndexChanged += new System.EventHandler(this.cmbSavedSessions_SelectedIndexChanged);
             // 
             // label4
             // 
