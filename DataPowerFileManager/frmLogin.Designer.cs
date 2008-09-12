@@ -37,18 +37,17 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.mtxtPortNumber = new System.Windows.Forms.MaskedTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmbSavedSessions = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.chkPromptToSave = new System.Windows.Forms.CheckBox();
             this.btnSaveSession = new System.Windows.Forms.Button();
+            this.txtPortNumber = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUsername
             // 
-            this.txtUsername.BackColor = System.Drawing.Color.LightGray;
             this.txtUsername.Location = new System.Drawing.Point(195, 33);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(232, 20);
@@ -56,15 +55,14 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.BackColor = System.Drawing.Color.LightGray;
             this.txtPassword.Location = new System.Drawing.Point(195, 60);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(232, 20);
             this.txtPassword.TabIndex = 1;
             // 
             // txtDataPowerIP
             // 
-            this.txtDataPowerIP.BackColor = System.Drawing.Color.LightGray;
             this.txtDataPowerIP.Location = new System.Drawing.Point(195, 87);
             this.txtDataPowerIP.Name = "txtDataPowerIP";
             this.txtDataPowerIP.Size = new System.Drawing.Size(232, 20);
@@ -73,8 +71,6 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Black;
-            this.label1.ForeColor = System.Drawing.Color.Lime;
             this.label1.Location = new System.Drawing.Point(98, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
@@ -84,8 +80,6 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Black;
-            this.label2.ForeColor = System.Drawing.Color.Lime;
             this.label2.Location = new System.Drawing.Point(98, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
@@ -95,8 +89,6 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Black;
-            this.label3.ForeColor = System.Drawing.Color.Lime;
             this.label3.Location = new System.Drawing.Point(96, 94);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
@@ -127,25 +119,14 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Black;
-            this.label5.ForeColor = System.Drawing.Color.Lime;
             this.label5.Location = new System.Drawing.Point(96, 120);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 13);
             this.label5.TabIndex = 11;
             this.label5.Text = "Port Number";
             // 
-            // mtxtPortNumber
-            // 
-            this.mtxtPortNumber.BackColor = System.Drawing.Color.LightGray;
-            this.mtxtPortNumber.Location = new System.Drawing.Point(195, 113);
-            this.mtxtPortNumber.Name = "mtxtPortNumber";
-            this.mtxtPortNumber.Size = new System.Drawing.Size(82, 20);
-            this.mtxtPortNumber.TabIndex = 10;
-            // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Black;
             this.pictureBox1.BackgroundImage = global::DataPowerFileManager.Properties.Resources.Background;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.Location = new System.Drawing.Point(-46, -44);
@@ -156,7 +137,6 @@
             // 
             // cmbSavedSessions
             // 
-            this.cmbSavedSessions.BackColor = System.Drawing.Color.LightGray;
             this.cmbSavedSessions.FormattingEnabled = true;
             this.cmbSavedSessions.Location = new System.Drawing.Point(195, 139);
             this.cmbSavedSessions.Name = "cmbSavedSessions";
@@ -167,8 +147,6 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Black;
-            this.label4.ForeColor = System.Drawing.Color.Lime;
             this.label4.Location = new System.Drawing.Point(98, 147);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 13);
@@ -178,8 +156,6 @@
             // chkPromptToSave
             // 
             this.chkPromptToSave.AutoSize = true;
-            this.chkPromptToSave.BackColor = System.Drawing.Color.Black;
-            this.chkPromptToSave.ForeColor = System.Drawing.Color.Lime;
             this.chkPromptToSave.Location = new System.Drawing.Point(13, 217);
             this.chkPromptToSave.Name = "chkPromptToSave";
             this.chkPromptToSave.Size = new System.Drawing.Size(103, 17);
@@ -197,21 +173,27 @@
             this.btnSaveSession.UseVisualStyleBackColor = true;
             this.btnSaveSession.Click += new System.EventHandler(this.btnSaveSession_Click);
             // 
+            // txtPortNumber
+            // 
+            this.txtPortNumber.Location = new System.Drawing.Point(195, 112);
+            this.txtPortNumber.Name = "txtPortNumber";
+            this.txtPortNumber.Size = new System.Drawing.Size(232, 20);
+            this.txtPortNumber.TabIndex = 17;
+            // 
             // frmLogin
             // 
             this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(510, 251);
+            this.Controls.Add(this.txtPortNumber);
             this.Controls.Add(this.btnSaveSession);
             this.Controls.Add(this.chkPromptToSave);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbSavedSessions);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.mtxtPortNumber);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label3);
@@ -246,11 +228,11 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.MaskedTextBox mtxtPortNumber;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox cmbSavedSessions;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkPromptToSave;
         private System.Windows.Forms.Button btnSaveSession;
+        private System.Windows.Forms.TextBox txtPortNumber;
     }
 }

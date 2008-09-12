@@ -158,7 +158,7 @@ namespace DataPowerFileManager
                         case "port":
                             gs.strCipherText = reader.ReadElementString();
                             gs.strDataPowerPort = rijndaelKey.Decrypt(gs.strCipherText);
-                            mtxtPortNumber.Text = gs.strDataPowerPort;
+                            txtPortNumber.Text = gs.strDataPowerPort;
                             break;
                     }
                 }
@@ -183,7 +183,7 @@ namespace DataPowerFileManager
                         txtDataPowerIP.Text = reader.GetAttribute("host");
                         break;
                     case "port":
-                        mtxtPortNumber.Text = reader.GetAttribute("port");
+                        txtPortNumber.Text = reader.GetAttribute("port");
                         break;
                 }
             }
