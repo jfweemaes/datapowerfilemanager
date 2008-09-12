@@ -14,9 +14,12 @@ namespace DataPowerFileManager
 {
     public partial class frmLogin : Form
     {
+        GlobalDataStore gs = new GlobalDataStore();
+
         public frmLogin()
         {           
             InitializeComponent();
+            
             //this.label1.Location = new System.Drawing.Point(135, 121);//start
             //this.label2.Location = new System.Drawing.Point(135, 147);//26
             //this.label3.Location = new System.Drawing.Point(135, 173);//26
@@ -47,16 +50,25 @@ namespace DataPowerFileManager
             {
                 //MessageBox.Show("Please Enter a DataPower IP");                
                 //return;
-            }          
-            
-            GlobalDataStore.GetInstance().strDataPowerHost = "dpowerxi50.prolifics.com";
-            GlobalDataStore.GetInstance().strDataPowerPort = "8080";
+            }
+
+            gs.strDataPowerUserName = txtUsername.Text.ToString();
+            gs.strDataPowerPassword = txtPassword.Text.ToString();
+           
+            gs.strDataPowerHost = "dpowerxi50.prolifics.com";
+            gs.strDataPowerPort = "8080";
             this.Close();
         }
 
         private void btnSaveSession_Click(object sender, EventArgs e)
         {
             string target = @"sessions";
+
+            gs.strDataPowerUserName = txtUsername.Text.ToString();
+            gs.strDataPowerPassword = txtPassword.Text.ToString();
+            gs.strDataPowerHost = "dpowerxi50.prolifics.com";
+            gs.strDataPowerPort = "8080";
+
             // Determine whether the directory exists.
             if (!Directory.Exists(target))
             {
@@ -65,13 +77,16 @@ namespace DataPowerFileManager
             }
 
 
-            TextWriter tw = new StreamWriter("sessions/saved_sessions.xml");
+            TextWriter tw = new StreamWriter("sessions/"+gs.strDataPowerUserName+"@"+gs.strDataPowerHost+".xml");
             XmlTextWriter write = new XmlTextWriter(tw);
             write.Formatting = Formatting.Indented;
             write.WriteStartDocument(true);
             write.WriteComment("Saved Sessions for DataPower File Manager");
-            write.WriteStartElement("root");
-            write.WriteElementString("username", "test");
+            write.WriteStartElement("DataPower");
+            write.WriteElementString("username", gs.strDataPowerUserName);
+            write.WriteElementString("password", gs.strDataPowerPassword);
+            write.WriteElementString("host", gs.strDataPowerHost);
+            write.WriteElementString("port", gs.strDataPowerPort);
             write.WriteEndElement();
             write.WriteEndDocument();
             write.Flush();

@@ -11,6 +11,8 @@ namespace DataPowerFileManager
                
         private string _strDataPowerHost = "";
         private string _strDataPowerPort = "";
+        private string _strDataPowerUserName = "";
+        private string _strDataPowerPassword = "";
 
 
         static GlobalDataStore()
@@ -43,6 +45,30 @@ namespace DataPowerFileManager
             set
             {
                 _strDataPowerPort = value;
+            }
+        }
+
+        public string strDataPowerUserName
+        {
+            get
+            {
+                return _strDataPowerUserName;
+            }
+            set
+            {
+                _strDataPowerUserName = value;
+            }
+        }
+
+        public string strDataPowerPassword
+        {
+            get
+            {
+                return _strDataPowerPassword;
+            }
+            set
+            {
+                _strDataPowerPassword = value;
             }
         }
 
