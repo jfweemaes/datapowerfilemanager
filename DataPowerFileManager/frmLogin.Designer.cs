@@ -37,12 +37,12 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.mtxtPortNumber = new System.Windows.Forms.MaskedTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbSavedSessions = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.chkPromptToSave = new System.Windows.Forms.CheckBox();
+            this.btnSaveSession = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,13 +135,13 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Port Number";
             // 
-            // maskedTextBox1
+            // mtxtPortNumber
             // 
-            this.maskedTextBox1.BackColor = System.Drawing.Color.LightGray;
-            this.maskedTextBox1.Location = new System.Drawing.Point(195, 113);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(82, 20);
-            this.maskedTextBox1.TabIndex = 10;
+            this.mtxtPortNumber.BackColor = System.Drawing.Color.LightGray;
+            this.mtxtPortNumber.Location = new System.Drawing.Point(195, 113);
+            this.mtxtPortNumber.Name = "mtxtPortNumber";
+            this.mtxtPortNumber.Size = new System.Drawing.Size(82, 20);
+            this.mtxtPortNumber.TabIndex = 10;
             // 
             // pictureBox1
             // 
@@ -154,14 +154,14 @@
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
             // 
-            // comboBox1
+            // cmbSavedSessions
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.LightGray;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(195, 139);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(232, 21);
-            this.comboBox1.TabIndex = 13;
+            this.cmbSavedSessions.BackColor = System.Drawing.Color.LightGray;
+            this.cmbSavedSessions.FormattingEnabled = true;
+            this.cmbSavedSessions.Location = new System.Drawing.Point(195, 139);
+            this.cmbSavedSessions.Name = "cmbSavedSessions";
+            this.cmbSavedSessions.Size = new System.Drawing.Size(232, 21);
+            this.cmbSavedSessions.TabIndex = 13;
             // 
             // label4
             // 
@@ -174,26 +174,27 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "Saved Sessions";
             // 
-            // checkBox1
+            // chkPromptToSave
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.BackColor = System.Drawing.Color.Black;
-            this.checkBox1.ForeColor = System.Drawing.Color.Lime;
-            this.checkBox1.Location = new System.Drawing.Point(13, 217);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(103, 17);
-            this.checkBox1.TabIndex = 15;
-            this.checkBox1.Text = "Prompt To Save";
-            this.checkBox1.UseVisualStyleBackColor = false;
+            this.chkPromptToSave.AutoSize = true;
+            this.chkPromptToSave.BackColor = System.Drawing.Color.Black;
+            this.chkPromptToSave.ForeColor = System.Drawing.Color.Lime;
+            this.chkPromptToSave.Location = new System.Drawing.Point(13, 217);
+            this.chkPromptToSave.Name = "chkPromptToSave";
+            this.chkPromptToSave.Size = new System.Drawing.Size(103, 17);
+            this.chkPromptToSave.TabIndex = 15;
+            this.chkPromptToSave.Text = "Prompt To Save";
+            this.chkPromptToSave.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnSaveSession
             // 
-            this.button1.Location = new System.Drawing.Point(206, 207);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 27);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSaveSession.Location = new System.Drawing.Point(206, 207);
+            this.btnSaveSession.Name = "btnSaveSession";
+            this.btnSaveSession.Size = new System.Drawing.Size(92, 27);
+            this.btnSaveSession.TabIndex = 16;
+            this.btnSaveSession.Text = "Save";
+            this.btnSaveSession.UseVisualStyleBackColor = true;
+            this.btnSaveSession.Click += new System.EventHandler(this.btnSaveSession_Click);
             // 
             // frmLogin
             // 
@@ -204,12 +205,12 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(510, 251);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.btnSaveSession);
+            this.Controls.Add(this.chkPromptToSave);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbSavedSessions);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.mtxtPortNumber);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label3);
@@ -244,11 +245,11 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox mtxtPortNumber;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbSavedSessions;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox chkPromptToSave;
+        private System.Windows.Forms.Button btnSaveSession;
     }
 }

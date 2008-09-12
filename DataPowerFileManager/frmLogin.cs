@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Xml;
+using System.IO;
 
 namespace DataPowerFileManager
 {
@@ -50,6 +52,30 @@ namespace DataPowerFileManager
             GlobalDataStore.GetInstance().strDataPowerHost = "dpowerxi50.prolifics.com";
             GlobalDataStore.GetInstance().strDataPowerPort = "8080";
             this.Close();
+        }
+
+        private void btnSaveSession_Click(object sender, EventArgs e)
+        {
+            string target = @"sessions";
+            // Determine whether the directory exists.
+            if (!Directory.Exists(target))
+            {
+                // Create the directory it does not exist.
+                Directory.CreateDirectory(target);
+            }
+
+
+            TextWriter tw = new StreamWriter("sessions/saved_sessions.xml");
+            XmlTextWriter write = new XmlTextWriter(tw);
+            write.Formatting = Formatting.Indented;
+            write.WriteStartDocument(true);
+            write.WriteComment("Saved Sessions for DataPower File Manager");
+            write.WriteStartElement("root");
+            write.WriteElementString("username", "test");
+            write.WriteEndElement();
+            write.WriteEndDocument();
+            write.Flush();
+            write.Close();
         }
 
         
