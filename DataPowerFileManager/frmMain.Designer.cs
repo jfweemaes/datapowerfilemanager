@@ -50,7 +50,7 @@
             // cmbDataPowerDomains
             // 
             this.cmbDataPowerDomains.FormattingEnabled = true;
-            this.cmbDataPowerDomains.Location = new System.Drawing.Point(12, 422);
+            this.cmbDataPowerDomains.Location = new System.Drawing.Point(386, 57);
             this.cmbDataPowerDomains.Name = "cmbDataPowerDomains";
             this.cmbDataPowerDomains.Size = new System.Drawing.Size(270, 21);
             this.cmbDataPowerDomains.TabIndex = 2;
@@ -58,7 +58,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 808);
+            this.button1.Location = new System.Drawing.Point(279, 93);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 23);
             this.button1.TabIndex = 3;
@@ -68,7 +68,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(184, 808);
+            this.button2.Location = new System.Drawing.Point(279, 122);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(98, 23);
             this.button2.TabIndex = 6;
@@ -143,9 +143,9 @@
             // 
             this.treeView2.AllowDrop = true;
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView2.Location = new System.Drawing.Point(12, 453);
+            this.treeView2.Location = new System.Drawing.Point(386, 84);
             this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(270, 322);
+            this.treeView2.Size = new System.Drawing.Size(270, 279);
             this.treeView2.TabIndex = 13;
             // 
             // dirListBox
@@ -170,7 +170,7 @@
             // fileListBox
             // 
             this.fileListBox.FormattingEnabled = true;
-            this.fileListBox.Location = new System.Drawing.Point(296, 84);
+            this.fileListBox.Location = new System.Drawing.Point(12, 369);
             this.fileListBox.Name = "fileListBox";
             this.fileListBox.Pattern = "*.*";
             this.fileListBox.Size = new System.Drawing.Size(254, 277);
@@ -180,7 +180,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 890);
+            this.ClientSize = new System.Drawing.Size(684, 653);
             this.ControlBox = false;
             this.Controls.Add(this.fileListBox);
             this.Controls.Add(this.driveListBox);
@@ -215,7 +215,7 @@
         private System.Windows.Forms.ToolStripMenuItem dataPowerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem getDomainsToolStripMenuItem;
         private System.Windows.Forms.TreeView treeView2;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        
         private Microsoft.VisualBasic.Compatibility.VB6.DirListBox dirListBox;
         private Microsoft.VisualBasic.Compatibility.VB6.DriveListBox driveListBox;
         private Microsoft.VisualBasic.Compatibility.VB6.FileListBox fileListBox;

@@ -21,21 +21,18 @@ namespace DataPowerFileManager
     {        
         String[] combobox = new string[1000];
         String[] tmp = new string[1];
-        String[] list = new string[100];
+        
         String domain;
         char[] delimiterChars = {'/'};
         string[] words;
         ImageList myImageList = new ImageList();
-        TreeNode tn;
+        
         private string tempDrive;
         
 
-        private int nIndex = 3;
-        public string dirPath = "";
-        public string dirName = "";
-        public TreeNodeMouseClickEventArgs ev;
+        
 
-        int cntdrv = 0;
+        
         
 
 
