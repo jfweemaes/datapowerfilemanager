@@ -29,13 +29,6 @@ namespace DataPowerFileManager
         
         private string tempDrive;
         
-
-        
-
-        
-        
-
-
         public frmMain()
         {
             InitializeComponent();
@@ -51,20 +44,10 @@ namespace DataPowerFileManager
             //myImageList.Images.Add(Image.FromFile("pics/My_Computer.png"));
             //myImageList.Images.Add(Image.FromFile("pics/Open_Folder.png"));
             //treeView1.ImageList = myImageList;
-            //treeView1.ImageIndex = 2;
-            
-            
+            //treeView1.ImageIndex = 2;           
         }
-       
-   
 
-       
-       
-        
-        
-
-
-        private void GetDataPowerDomains()
+        public void GetDataPowerDomains()
         {            
             GetDomainListRequest gdr = new GetDomainListRequest();
             Amp.GetAppInstance().GetDomainList(gdr).Items.CopyTo(combobox, 0);
@@ -91,7 +74,7 @@ namespace DataPowerFileManager
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GetDataPowerDomains();
+            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -288,19 +271,13 @@ namespace DataPowerFileManager
             frmLogin frm = new frmLogin();
             frm.ShowDialog();           
         }
-
         
-
-       
-
         
-
         private void driveListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                this.dirListBox.Path = this.driveListBox.Drive;
-                
+                this.dirListBox.Path = this.driveListBox.Drive;                
                 tempDrive = this.driveListBox.Drive;
             }
             catch (Exception ex)
@@ -320,6 +297,16 @@ namespace DataPowerFileManager
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tLogin_Tick(object sender, EventArgs e)
+        {
+            if (GlobalDataStore.GetInstance().strLoginReady == "1")
+            {
+                GetDataPowerDomains();
+                cmbDataPowerDomains.Enabled = true;
+                GlobalDataStore.GetInstance().strLoginReady = "0";
             }
         }        
     }

@@ -59,10 +59,12 @@ namespace DataPowerFileManager
             }
 
             GlobalDataStore.GetInstance().strDataPowerUserName = txtUsername.Text.ToString();
-            GlobalDataStore.GetInstance().strDataPowerPassword = txtPassword.Text.ToString();
-           
+            GlobalDataStore.GetInstance().strDataPowerPassword = txtPassword.Text.ToString();           
             GlobalDataStore.GetInstance().strDataPowerHost = txtDataPowerIP.Text.ToString();
             GlobalDataStore.GetInstance().strDataPowerPort = txtPortNumber.Text.ToString();
+
+            GlobalDataStore.GetInstance().strLoginReady = "1";            
+
             this.Close();
         }
 
