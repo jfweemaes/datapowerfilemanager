@@ -505,13 +505,13 @@ namespace DataPowerFileManager
             //backgroundWorker1.RunWorkerAsync();
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            GlobalDataStore.GetInstance().strDrive = cmbDrives.Items[1].ToString();
-            Console.WriteLine(GlobalDataStore.GetInstance().strDrive);
-            Thread t = new Thread(UpdateGUI);
-            t.Start();
-        }
+        //private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //    GlobalDataStore.GetInstance().strDrive = "C:\\";
+        //    Console.WriteLine(GlobalDataStore.GetInstance().strDrive);
+        //    Thread t = new Thread(UpdateGUI);
+        //    t.Start();
+        //}
 
         private void cmbDrives_SelectedIndexChanged(object sender, EventArgs e)
         {
