@@ -414,7 +414,7 @@ namespace DataPowerFileManager
                 {
                     string imageSize = iterImageSize.Current.Value;
                     words = imageSize.Split(delimiterChars);
-                    lvDataPower.Items.Add(words[0]);
+                    //lvDataPower.Items.Add(words[0]);
 
                 }
             }
