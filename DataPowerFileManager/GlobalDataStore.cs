@@ -21,6 +21,8 @@ namespace DataPowerFileManager
         private string _strPassPhrase = "Pas5pr@se";        // can be any string
         private string _strInitVector = "@1B2c3D4e5F6g7H8"; // must be 16 bytes
 
+        private string _strDrive = "";
+        private int _intParentIndex;
 
         static GlobalDataStore()
         {
@@ -39,5 +41,7 @@ namespace DataPowerFileManager
         public string strCipherText { get { return _strCipherText; } set { _strCipherText = value; } }
         public string strPassPhrase { get { return _strPassPhrase; } set { _strPassPhrase = value; } }
         public string strInitVector { get { return _strInitVector; } set { _strInitVector = value; } }
+        public string strDrive { get { return _strDrive; } set { _strDrive = value; } }
+        public int intParentIndex { get { return _intParentIndex; } set { _intParentIndex = value; } }
     }
 }
