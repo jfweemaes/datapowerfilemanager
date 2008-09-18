@@ -27,7 +27,8 @@ namespace DataPowerFileManager
         string[] words;
         ImageList myImageList = new ImageList();
         TreeNode tn;
-
+        private string tempDrive;
+        
 
         private int nIndex = 3;
         public string dirPath = "";
@@ -41,10 +42,12 @@ namespace DataPowerFileManager
         public frmMain()
         {
             InitializeComponent();
+            tempDrive = this.driveListBox.Drive;
+            this.dirListBox.Path = Environment.GetFolderPath(Environment .SpecialFolder.MyDocuments);
             combobox[0] = "default";
             cmbDataPowerDomains.DataSource = combobox;
             cmbDataPowerDomains.SelectedIndex = 0;
-            getDrives();            
+                        
 
             //myImageList.Images.Add(Image.FromFile("pics/120px-Hdd_icon.svg.png"));
             //myImageList.Images.Add(Image.FromFile("pics/Hardware-CD-ROM-256x256.png"));
@@ -56,217 +59,10 @@ namespace DataPowerFileManager
             
         }
        
-        private void getDrives()
-        {
-            foreach (DriveInfo drive in DriveInfo.GetDrives())
-            {
-                if (drive.IsReady) //Check to see there is something in the drive
-                    cmbDrives.Items.Add(drive.RootDirectory);
-            }
-        }
+   
 
-        public delegate void StringDelegate(string updategui);
-
-        public void UpdateGUI(object o)
-        {
-            while (true)
-            {
-
-                tvFileListing.Invoke(new StringDelegate(GetAllFileNames),
-                    new object[] { "Test" });
-
-                // break;
-                //Thread.Sleep(100);
-
-            }
-        }
-
-        public void GetAllFileNames(string text)
-        {
-            //
-            // Store results in the file results list.
-            //
-            string root = GlobalDataStore.GetInstance().strDrive.ToString();
-            List<string> fileResults = new List<string>();
-            
-            // Data structure to hold names of subfolders to be
-        // examined for files.
-        Stack<string> dirs = new Stack<string>(20);
-
-        if (!System.IO.Directory.Exists(root))
-        {
-            throw new ArgumentException();
-        }
-        dirs.Push(root);
-
-        while (dirs.Count > 0)
-        {
-            
-            string currentDir = dirs.Pop();
-            string[] subDirs;
-            try
-            {
-                subDirs = System.IO.Directory.GetDirectories(currentDir);
-            }
-            // An UnauthorizedAccessException exception will be thrown if we do not have
-            // discovery permission on a folder or file. It may or may not be acceptable 
-            // to ignore the exception and continue enumerating the remaining files and 
-            // folders. It is also possible (but unlikely) that a DirectoryNotFound exception 
-            // will be raised. This will happen if currentDir has been deleted by
-            // another application or thread after our call to Directory.Exists. The 
-            // choice of which exceptions to catch depends entirely on the specific task 
-            // you are intending to perform and also on how much you know with certainty 
-            // about the systems on which this code will run.
-            catch (UnauthorizedAccessException e)
-            {                    
-                Console.WriteLine(e.Message);
-                continue;
-            }
-            catch (System.IO.DirectoryNotFoundException e)
-            {
-                Console.WriteLine(e.Message);
-                continue;
-            }
-
-            string[] files = null;
-            try
-            {
-                string test = System.Environment.SystemDirectory.ToString();
-                char[] delimiterChars = { '\\' };
-                string[] words = test.Split(delimiterChars);
-                string test2 = words[0].ToString()+"\\"+words[1].ToString();
-                if (currentDir == test2 || currentDir == words[0].ToString() + "\\ProgramData" || currentDir == words[0].ToString() + "\\System Volume Information"
-                    || currentDir == words[0].ToString() + "\\Program Files (x86)" || currentDir == words[0].ToString() + "\\Program Files" || currentDir == words[0].ToString() + "\\$Recycle.Bin")
-                {
-                    continue;
-                }
-                else
-                {
-                    files = System.IO.Directory.GetFiles(currentDir);
-                }
-            }
-
-            catch (UnauthorizedAccessException e)
-            {
-
-                Console.WriteLine(e.Message);
-                continue;
-            }
-
-            catch (System.IO.DirectoryNotFoundException e)
-            {
-                Console.WriteLine(e.Message);
-                continue;
-            }
-            // Perform the required action on each file here.
-            // Modify this block to perform your required task.
-            foreach (string file in files)
-            {
-                try
-                {
-                    // Perform whatever action is required in your scenario.
-                    System.IO.FileInfo fi = new System.IO.FileInfo(file);
-                    //fileResults.Add(file);
-                    Application.DoEvents();
-                    addNode(file, null);
-                    //Console.WriteLine("{0}: {1}, {2}", fi.Name, fi.Length, fi.CreationTime);
-                }
-                catch (System.IO.FileNotFoundException e)
-                {
-                    // If file was deleted by a separate application
-                    //  or thread since the call to TraverseTree()
-                    // then just continue.
-                    Console.WriteLine(e.Message);
-                    continue;
-                }
-            }
-
-            // Push the subdirectories onto the stack for traversal.
-            // This could also be done before handing the files.
-            foreach (string str in subDirs)
-                dirs.Push(str);
-        }
-       // return fileResults.ToArray();
-
-    }
-
-
-        //Recursive function to add a full path into a treeview
-        private void addNode(string text, TreeNode parent)
-        {
-            if (text.EndsWith("\\")) text.TrimEnd(new char[] { '\\' });
-
-            if (parent == null)
-            {
-                //Add/Find the first node
-                if (text.IndexOf("\\") != -1)
-                {
-                    int parentIndex;
-                    string nodeString;
-                    if (text.IndexOf(":") != -1) //C:\ want to preserve the backslash
-                    {
-                        //Check to see if it exists first                        
-                        nodeString = text.Substring(0, text.IndexOf("\\") + 1);
-                        parentIndex = tvFileListing.Nodes.IndexOfKey(nodeString);
-
-                        //Node does not exist so create it
-                        if (parentIndex == -1)
-                        {
-                            //Important to set the key to the text so it is easier to look up the node later
-                            
-                            tvFileListing.Nodes.Add(nodeString, nodeString);
-                            parentIndex = tvFileListing.Nodes.Count - 1;
-                        }
-
-                    }
-                    else
-                    {
-                        nodeString = text.Substring(0, text.IndexOf("\\"));
-                        parentIndex = tvFileListing.Nodes.IndexOfKey(nodeString);
-
-                        if (parentIndex == -1)
-                        {
-                            tvFileListing.Nodes.Add(nodeString, nodeString);
-                            
-                            parentIndex = tvFileListing.Nodes.Count - 1;
-                        }
-                    }
-
-                    parent = tvFileListing.Nodes[parentIndex];
-                    text = text.Substring(text.IndexOf("\\") + 1);
-                }
-                else
-                {
-                    //Simply add it if it does not exist
-                    if (tvFileListing.Nodes.IndexOfKey(text) == -1)
-                        tvFileListing.Nodes.Add(text, text);
-                        
-                }
-            }
-
-            if (text.IndexOf("\\") != -1)
-            {
-                string nodeString = text.Substring(0, text.IndexOf("\\"));
-                int parentIndex = parent.Nodes.IndexOfKey(nodeString);
-
-                if (parentIndex == -1)
-                {
-                    parent.Nodes.Add(nodeString, nodeString);
-                    
-                    parentIndex = parent.Nodes.Count - 1;
-                }
-
-                addNode(text.Substring(text.IndexOf("\\") + 1), parent.Nodes[parentIndex]);
-            }
-            else
-            {
-                //No children nodes necessary, just add it
-                if (parent.Nodes.IndexOfKey(text) == -1)
-                    parent.Nodes.Add(text, text);
-                    
-            }
-        }
-
+       
+       
         
         
 
@@ -483,10 +279,7 @@ namespace DataPowerFileManager
 
 
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
+       
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {   
@@ -499,25 +292,38 @@ namespace DataPowerFileManager
             frm.ShowDialog();           
         }
 
-        private void frmMain_Load_1(object sender, EventArgs e)
+        
+
+       
+
+        
+
+        private void driveListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Start filling the TreeView on a separate thread
-            //backgroundWorker1.RunWorkerAsync();
+            try
+            {
+                this.dirListBox.Path = this.driveListBox.Drive;
+                
+                tempDrive = this.driveListBox.Drive;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                driveListBox.Drive = tempDrive;
+            }
         }
 
-        //private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //    GlobalDataStore.GetInstance().strDrive = "C:\\";
-        //    Console.WriteLine(GlobalDataStore.GetInstance().strDrive);
-        //    Thread t = new Thread(UpdateGUI);
-        //    t.Start();
-        //}
-
-        private void cmbDrives_SelectedIndexChanged(object sender, EventArgs e)
+        private void dirListBox_Change(object sender, EventArgs e)
         {
-            GlobalDataStore.GetInstance().strDrive = cmbDrives.SelectedItem.ToString();
-            Thread t = new Thread(UpdateGUI);            
-            t.Start();
+            try
+            {
+                this.fileListBox.Path = this.dirListBox.Path;
+                //this.lblFolder.Text = dirListBox.Path.Substring(dirListBox.Path.LastIndexOf("\\") + 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }        
     }
 }
